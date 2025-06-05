@@ -72,7 +72,7 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public void createBeer(Beer beer) {
+    public Beer createBeer(Beer beer) {
         log.debug("Create Beer - in service. Beer Name: {}", beer.getBeerName());
 
         Beer savedBeer = Beer.builder()
@@ -88,6 +88,7 @@ public class BeerServiceImpl implements BeerService {
                 .build();
 
         beerMap.put(savedBeer.getId(), savedBeer);
+        return savedBeer;
     }
 
 }
