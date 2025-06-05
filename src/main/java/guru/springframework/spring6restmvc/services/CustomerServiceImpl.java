@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .version(1)
                 .customerName("John Doe")
                 .createdDate(LocalDateTime.now())
-                .lastModifiedDate(LocalDateTime.now())
+                .updateDate(LocalDateTime.now())
                 .build();
 
         Customer customer2 = Customer.builder()
@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .version(1)
                 .customerName("Jane Smith")
                 .createdDate(LocalDateTime.now())
-                .lastModifiedDate(LocalDateTime.now())
+                .updateDate(LocalDateTime.now())
                 .build();
 
         Customer customer3 = Customer.builder()
@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .version(1)
                 .customerName("Alice Johnson")
                 .createdDate(LocalDateTime.now())
-                .lastModifiedDate(LocalDateTime.now())
+                .updateDate(LocalDateTime.now())
                 .build();
 
         customerMap.put(customer1.getId(), customer1);
@@ -55,6 +55,22 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer getCustomerById(UUID id) {
         log.debug("Get Customer by Id - in service. Id: {}", id);
         return customerMap.get(id);
+    }
+
+    @Override
+    public Customer createCustomer(Customer customer) {
+        log.debug("Create Customer - in service. Customer Name: {}", customer.getCustomerName());
+
+        Customer savedCustomer = Customer.builder()
+                .id(UUID.randomUUID())
+                .version(1)
+                .customerName(customer.getCustomerName())
+                .createdDate(LocalDateTime.now())
+                .updateDate(LocalDateTime.now())
+                .build();
+
+        customerMap.put(savedCustomer.getId(), savedCustomer);
+        return savedCustomer;
     }
 
 }
