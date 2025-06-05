@@ -20,6 +20,14 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
+    @PutMapping("/{customerId}")
+    public ResponseEntity<Void> updateCustomerById(@PathVariable("customerId") UUID customerId,
+                                                   @RequestBody Customer customer) {
+        log.debug("Update Customer - in controller");
+        customerService.updateCustomerById(customerId, customer);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping
     public ResponseEntity<Void> createCustomer(@RequestBody Customer customer) {
         log.debug("Create Customer - in controller");

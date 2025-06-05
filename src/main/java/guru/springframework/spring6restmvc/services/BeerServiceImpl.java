@@ -93,7 +93,7 @@ public class BeerServiceImpl implements BeerService {
 
     @Override
     public void updateBeerById(UUID beerId, Beer beer) {
-        log.debug("Update Beer - in service. Beer Id: {}, Beer Name: {}", beerId, beer.getBeerName());
+        log.debug("Update Beer - in service. Beer Id: {}", beerId);
 
         Beer existingBeer = beerMap.get(beerId);
         existingBeer.setVersion(existingBeer.getVersion() + 1);
