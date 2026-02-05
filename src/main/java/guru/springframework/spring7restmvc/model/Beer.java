@@ -1,5 +1,6 @@
-package guru.springframework.spring6restmvc.model;
+package guru.springframework.spring7restmvc.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@AllArgsConstructor
 @Builder
 @Data
 public class Beer {
