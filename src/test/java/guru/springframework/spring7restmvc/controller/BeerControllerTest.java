@@ -1,16 +1,15 @@
-package guru.springframework.spring6restmvc.controller;
+package guru.springframework.spring7restmvc.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import guru.springframework.spring6restmvc.model.Beer;
-import guru.springframework.spring6restmvc.services.BeerService;
-import guru.springframework.spring6restmvc.services.BeerServiceImpl;
+import guru.springframework.spring7restmvc.model.Beer;
+import guru.springframework.spring7restmvc.services.BeerService;
+import guru.springframework.spring7restmvc.services.BeerServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import tools.jackson.databind.ObjectMapper;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
@@ -32,13 +31,13 @@ class BeerControllerTest {
     BeerServiceImpl beerServiceImpl = new BeerServiceImpl();
 
     @Test
-    void testCreateNewBeer() throws JsonProcessingException {
+    void testCreateNewBeer() {
         Beer beer = beerServiceImpl.listBeers().getFirst();
         System.out.println(objectMapper.writeValueAsString(beer));
     }
 
     @Test
-    void testListBeers() throws Exception{
+    void testListBeers() throws Exception {
         Beer firstTestBeer = beerServiceImpl.listBeers().getFirst();
 
         given(beerService.listBeers()).willReturn(beerServiceImpl.listBeers());
