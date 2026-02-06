@@ -1,11 +1,11 @@
-package guru.springframework.spring6restmvc.controller;
+package guru.springframework.spring7restmvc.controller;
 
-import guru.springframework.spring6restmvc.model.Beer;
-import guru.springframework.spring6restmvc.services.BeerService;
-import guru.springframework.spring6restmvc.services.BeerServiceImpl;
+import guru.springframework.spring7restmvc.model.Beer;
+import guru.springframework.spring7restmvc.services.BeerService;
+import guru.springframework.spring7restmvc.services.BeerServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -36,7 +36,7 @@ class BeerControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id", is(testBeer.getId())))
+                .andExpect(jsonPath("$.id", is(testBeer.getId().toString())))
                 .andExpect(jsonPath("$.beerName", is(testBeer.getBeerName())));
     }
 
