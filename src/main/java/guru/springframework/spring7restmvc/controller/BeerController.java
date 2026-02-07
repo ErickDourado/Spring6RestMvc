@@ -1,7 +1,7 @@
-package guru.springframework.spring6restmvc.controller;
+package guru.springframework.spring7restmvc.controller;
 
-import guru.springframework.spring6restmvc.model.Beer;
-import guru.springframework.spring6restmvc.services.BeerService;
+import guru.springframework.spring7restmvc.model.Beer;
+import guru.springframework.spring7restmvc.services.BeerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -24,7 +24,7 @@ public class BeerController {
 
     @PatchMapping(BEER_PATH_ID)
     public ResponseEntity<Void> patchBeerById(@PathVariable("beerId") UUID beerId,
-                                               @RequestBody Beer beer) {
+                                              @RequestBody Beer beer) {
         log.debug("Patch Beer - in controller");
         beerService.patchBeerById(beerId, beer);
         return ResponseEntity.noContent().build();
@@ -65,6 +65,7 @@ public class BeerController {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Void> handleNotFoundException() {
+        log.info("Handling NotFoundException - returning 404");
         return ResponseEntity.notFound().build();
     }
 
